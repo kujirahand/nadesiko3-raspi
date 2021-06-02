@@ -1,0 +1,23 @@
+{
+  "name": "nadesiko3-raspi",
+  "version": "1.0.0",
+  "description": "Raspberry Pi Support for Nadesiko3",
+  "main": "nadesiko3-raspi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kujirahand/nadesiko3-raspi.git"
+  },
+  "keywords": ["nadesiko3", "Raspberry Pi"],
+  "author": "kujirahand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kujirahand/nadesiko3-raspi/issues"
+  },
+  "homepage": "https://github.com/kujirahand/nadesiko3-raspi#readme",
+  "dependencies": {
+    "rpio": "^2.4.2"
+  }
+}
