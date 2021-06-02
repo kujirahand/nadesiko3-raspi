@@ -1,15 +1,6 @@
-var rpio = require('rpio');
-
-/*
- * Repeatedly read a DHT11 attached to Pin 7 / GPIO 4 and print out the current
- * temperature and relative humidity if the read was successful.
- */
-var pin = 7;
-
-/*
- * Print debug messages if enabled.
- */
-var debug = false;
+// DHT11.js
+const rpio = require('rpio');
+const debug = false;
 
 function dbg()
 {
@@ -47,7 +38,7 @@ function read_dht11(pin) {
 	 * Our read buffer of all the bits sent.  Should be plenty.  On a
 	 * Raspberry Pi 4 a successful read uses up about half of this.
 	 */
-	var buf = new Buffer(50000);
+	var buf = Buffer.alloc(50000);
 
 	/*
 	 * Array storing the data bits received from the DHT11 after parsing
@@ -189,7 +180,7 @@ function read_dht11(pin) {
 	 * many implementations.
 	 */
 	if ((vals[0] + vals[1] + vals[2] + vals[3]) != vals[4]) {
-		dbg("Bad checksum: %d:%d:%d:%d %d", v[0], v[1], v[2], v[3], v[4]);
+		// dbg("Bad checksum: %d:%d:%d:%d %d", v[0], v[1], v[2], v[3], v[4]);
 		return {'温度':vals[2], '湿度':vals[0], 'エラー':'チェックサムの異常'};
 	}
   
