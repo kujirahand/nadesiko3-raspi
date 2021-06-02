@@ -149,11 +149,12 @@ const PluginRaspi = {
   },
   'PWM範囲設定': { // @GPIOピンNOのPWMの範囲をVに設定 // @PWMはんいせってい
     type: 'func',
-    josi: [['へ','に']],
+    josi: [['を'],['へ','に']],
     pure: true,
     fn: function (no, v, sys) {
       rpio.pwmSetRange(no, v)
-    }
+    },
+    return_none: true
   },
   'PWM値設定': { // @GPIOピンNOのPWMのデータをVに設定 // @PWMあたいせってい
     type: 'func',
