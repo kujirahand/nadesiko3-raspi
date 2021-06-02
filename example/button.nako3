@@ -1,0 +1,13 @@
+# GPIOを使ってLEDを操作
+!「../nadesiko3-raspi.js」を取り込む。
+
+# スイッチをつないだGPIOのピン番号を指定
+V3_PIN=1
+IN_PIN=12
+
+IN_PINを[入力モード,プルダウン]でGPIO開く。
+IN_PINがGPIO変化した時には
+　　対象を表示。
+ここまで。
+
+

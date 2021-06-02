@@ -1,0 +1,15 @@
+# GPIOを使ってLEDを操作
+!「../nadesiko3-raspi.js」を取り込む。
+
+# ピン番号を指定
+PIN=7
+
+PINを出力モードでGPIO開く。
+10回
+　　PINをオンにGPIO設定
+　　0.5だけ眠る
+　　PINをオフにGPIO設定
+　　0.5だけ眠る
+ここまで。
+
+
