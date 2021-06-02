@@ -94,6 +94,31 @@ const PluginRaspi = {
       return rpio.read(no)
     }
   },
+  'GPIOバイナリ読': { // @GPIOのピン番号NOの値をNバイト読んでBufferを返す // @GPIOばいなりよむ
+    type: 'func',
+    josi: [['を'],['だけ']],
+    pure: true,
+    fn: function (no, n, sys) {
+      if (!sys.__gpio[n]) {
+        throw new Error('『GPIO開』を先に使ってください')
+      }
+      const buf = new Buffer(n)
+      rpio.readbuf(no, buf)
+      return buf
+    }
+  },
+  'GPIOバイナリ書': { // @GPIOのピン番号NOの値へバッファBUFを書き込む // @GPIOばいなりかく
+    type: 'func',
+    josi: [['へ','に'],['を']],
+    pure: true,
+    fn: function (no, buf, sys) {
+      if (!sys.__gpio[n]) {
+        throw new Error('『GPIO開』を先に使ってください')
+      }
+      rpio.writebuf(no, buf)
+    },
+    return_none: true
+  },
   'GPIO変化時': { // @GPIOのピン番号NOの値が変化した時にFUNCを実行。その時「対象」に代入される。 // @GPIOへんかしたとき
     type: 'func',
     josi: [['を'],['の','が']],
@@ -112,6 +137,40 @@ const PluginRaspi = {
       })
     },
     return_none: true
+  },
+  'PWM分割数設定': { // @PWMの分割数(clock divider)を設定 // @PWMぶんかつすうせってい
+    type: 'func',
+    josi: [['へ','に']],
+    pure: true,
+    fn: function (v, sys) {
+      rpio.pwmSetClockDivider(v)
+    },
+    return_none: true
+  },
+  'PWM範囲設定': { // @GPIOピンNOのPWMの範囲をVに設定 // @PWMはんいせってい
+    type: 'func',
+    josi: [['へ','に']],
+    pure: true,
+    fn: function (no, v, sys) {
+      rpio.pwmSetRange(no, v)
+    }
+  },
+  'PWM値設定': { // @GPIOピンNOのPWMのデータをVに設定 // @PWMあたいせってい
+    type: 'func',
+    josi: [['へ','に']],
+    pure: true,
+    fn: function (no, v, sys) {
+      rpio.pwmSetData(no, v)
+    }
+  },
+  'DHT11取得': { // @GPIOピンNOにつなげた温度湿度センサーDHT11から値を読み{"温度":xxx,"湿度":xxx}で返す // @DHT11しゅとく
+    type: 'func',
+    josi: [['から','の']],
+    pure: true,
+    fn: function (no, sys) {
+      const dht11 = require(__dirname + '/dht11.js')
+      return dht11(no)
+    }
   }
 }
 
