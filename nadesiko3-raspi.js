@@ -64,13 +64,11 @@ const PluginRaspi = {
   },
   'GPIO閉': { // @GPIOのピン番号NOを閉じる // @GPIOとじる
     type: 'func',
-    josi: [['を']],
+    josi: [['を', 'の']],
     pure: true,
     fn: function (no, sys) {
-      if (sys.__gpio[no]) {
-        rpio.close(no)
-        sys.__gpio[no] = false
-      }
+      rpio.close(no)
+      sys.__gpio[no] = false
     },
     return_none: true
   },
@@ -158,7 +156,7 @@ const PluginRaspi = {
   },
   'PWM値設定': { // @GPIOピンNOのPWMのデータをVに設定 // @PWMあたいせってい
     type: 'func',
-    josi: [['へ','に']],
+    josi: [['へ','に'],['を']],
     pure: true,
     fn: function (no, v, sys) {
       rpio.pwmSetData(no, v)
